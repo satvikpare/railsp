@@ -1,0 +1,24 @@
+<br>
+<div>
+    <%= @post.name%>  
+    <% @post.comments.each do |comment|%>
+      <div style="border-style: solid;   border-color: blue;">
+
+        <p> <%= comment.title %> 
+            <%= link_to 'Destroy',post_comment_path(@post,comment),  method: :delete %>
+            
+        </p>
+          
+          <% comment.comments.each do |reply|%>
+          <p style="border-style: solid;  border-color: green;">
+            <%= reply.title %> 
+            <%= link_to "Delete",post_comment_comment_path(@post, comment,reply.id),  method: :delete %>
+          </p>
+          <%end%>
+            <%= render 'comments/reply', parent_comment: comment %> 
+          
+        </div>
+        <br>
+        <%end%>
+      </div>
+        <%= render 'comments/form', post: @post %>

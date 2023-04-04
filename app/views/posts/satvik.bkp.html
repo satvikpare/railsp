@@ -1,0 +1,84 @@
+
+<div>
+  <%= @post.name%>  
+  <% @post.comments.each do |comment|%>
+    <div style="border-style: solid;   border-color: blue;">
+      <p> <%= comment.title %> 
+        <%= link_to 'Destroy',post_comment_path(@post,comment),  method: :delete %>
+         <%= link_to "Reply","#",id:"reply_button" %>
+        </p>
+        <div id="replyform" >
+          <%= render 'comments/reply', post: @post,comment: comment %> 
+        </div>
+      <% comment.comments.each do |reply|%>
+        <p style="border-style: solid;  border-color: green;">
+          <%= reply.title %> 
+            <%= link_to "Delete",post_comment_comment_path(@post, comment,reply.id),  method: :delete %>
+        </p>
+      <%end%>
+    </div>
+    <br>
+  <%end%>
+</div>
+
+<%= render 'comments/form', post: @post %>
+
+
+
+with user signed in::
+
+<br>
+
+<div>
+    <%= @post.name%>  
+    <% @post.comments.each do |comment|%>
+      <div style="border-style: solid;   border-color: blue;">
+
+        <p> <%= comment.title %> 
+          <% if user_signed_in? %> 
+            <%= link_to 'Destroy',post_comment_path(@post,comment),  method: :delete %>
+            <%end%>  
+        </p>
+          
+          <% comment.comments.each do |reply|%>
+          <p style="border-style: solid;  border-color: green;">
+            <%= reply.title %> 
+            <% if user_signed_in? %> 
+            <%= link_to "Delete",post_comment_comment_path(@post, comment,reply.id),  method: :delete %>
+          </p>
+          <%end%>
+          <%end%>
+          <% if user_signed_in? %> 
+            <%= render 'comments/reply',commentable_id: comment.id, commentable_type: "Comment" %> 
+          <%end%>
+          
+        </div>
+        <br>
+        <%end%>
+      </div>
+      <% if user_signed_in? %> 
+        <%= render 'comments/form', post: @post %>
+      <%end%>
+
+
+post new coloumn user_id
+
+
+...  
+if params[:comment_id]
+@commentable = Comment.find(params[:comment_id])
+else params[:post_id]
+@commentable = Post.find(params[:post_id])
+end
+
+
+deepak sir's'''
+
+def create
+  if params[:comment_id].present?
+    @comment = @post.comments.create(comment_params)
+  else
+    @comment = @post.comments.create(comment_params)
+  end
+  redirect_to post_path(@post)
+end

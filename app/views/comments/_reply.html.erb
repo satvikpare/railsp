@@ -1,0 +1,7 @@
+<%= form_with model:[@post,parent_comment,Comment.new] do |form| %>
+  <div>
+    <%= form.label :Reply %>
+    <%= form.text_field :title %>
+  </div>
+  <%= form.submit :Reply %>
+<% end %>

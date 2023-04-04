@@ -1,0 +1,11 @@
+
+<% @posts.each do |p| %>
+    <p><%= link_to p.name, p %>
+    <%= link_to "Delete", post_path(p.id) , method: :delete %>
+  </p>
+  <% end %>
+  <br>
+
+  <%#= render 'newp' %>
+
+  <%= render :partial => 'newp' %>
