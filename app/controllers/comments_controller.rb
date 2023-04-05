@@ -8,7 +8,7 @@ def show
 end
 
 def create
-  @comment = @commentable.comments.create(comment_params)
+  @comment =current_user.comments.create(comment_params.merge(commentable: @commentable))
   redirect_to post_path(@commentable)
 end
 
