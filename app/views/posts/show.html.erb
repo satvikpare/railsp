@@ -1,24 +1,33 @@
 <br>
 <div>
+
     <%= @post.name%>  
     <% @post.comments.each do |comment|%>
       <div style="border-style: solid;   border-color: blue;">
 
         <p> <%= comment.title %> 
+          <% if user_signed_in? && current_user.id == comment.user_id %>
             <%= link_to 'Destroy',post_comment_path(@post,comment),  method: :delete %>
-            
+          <%end%>
         </p>
           
           <% comment.comments.each do |reply|%>
           <p style="border-style: solid;  border-color: green;">
             <%= reply.title %> 
-            <%= link_to "Delete",post_comment_comment_path(@post, comment,reply.id),  method: :delete %>
+            <% if user_signed_in? && current_user.id == reply.user_id %>
+              <%= link_to "Delete",post_comment_comment_path(@post, comment,reply.id),  method: :delete %>
+            <%end%>
+ 
           </p>
           <%end%>
+          <% if user_signed_in?  %>
             <%= render 'comments/reply', parent_comment: comment %> 
+          <%end%>
           
         </div>
         <br>
         <%end%>
       </div>
+      <% if user_signed_in? %>
         <%= render 'comments/form', post: @post %>
+      <% end %>

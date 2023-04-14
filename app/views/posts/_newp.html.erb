@@ -1,8 +1,12 @@
+<br>
+<h3>New Post</h3>
 <%= form_with model: @post do |form| %>
   <div>
-    <%= form.label :name %>
+    <%= form.label :Title %>
     <%= form.text_field :name %>
   </div>
 
   <%= form.submit %>
 <% end %>
+
+

@@ -82,3 +82,61 @@ def create
   end
   redirect_to post_path(@post)
 end
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<% @posts.each do |p|%>
+    <%= link_to p.name, p%>
+    <br>
+<% end %>
+
+<br>
+<%if @sent_requests.exists? %>
+    <h3>Sent Friend Requests</h3>
+    <% @sent_requests.each do |sent_req|%>
+        <% user=User.find(sent_req.receiver_id)%>
+        <%= user.name%>
+        <%= sent_req.status%>
+        <br>
+    <% end %>
+<% end %>
+<br>
+
+<%if @sent_friends.exists? %>
+    <h3>Sent Friends</h3>
+    <% @sent_friends.each do |sent|%>  
+    <% user=User.find(sent.receiver_id)%>
+        <%= user.name%>
+        <br>
+    <% end %>
+<% end %>
+
+<%if @received_requests.exists? %>
+    <h3>Received Friend Requests</h3>
+    <% @received_requests.each do |rec_req|%>
+        <% user=User.find(rec_req.sender_id)%>
+        <%= user.name%>
+        <%= rec_req.status%>
+        <br>
+    <% end %>
+<% end %>
+
+
+
+<%if @received_friends.exists? %>
+    <h3>Received Friends</h3>
+    <% @received_friends.each do |received|%>  
+    <% user=User.find(received.sender_id)%>
+        <%= user.name%>
+        <br>
+    <% end %>
+<% end %>

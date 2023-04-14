@@ -2,10 +2,11 @@ class PostsController < ApplicationController
   
   def index
     @posts=Post.all
-    respond_to do |format|
-      format.html 
-      format.json { render json: @posts }
-    end
+    @users= User.all
+    # respond_to do |format|
+    #   format.html 
+    #   format.json { render json: @posts }
+    # end
   end
 
   
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
   
+
   private
 
   def post_params

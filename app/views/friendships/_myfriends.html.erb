@@ -1,0 +1,17 @@
+
+<br>
+<h2>Friends</h2>
+<%if @sent_friends.exists? %>
+    <% @sent_friends.each do |sent|%>  
+    <% user=User.find(sent.receiver_id)%>
+        <%= user.name%>
+    <% end %>
+    <br>
+<% end %>
+
+<%if @received_friends.exists? %>
+    <% @received_friends.each do |received|%>  
+    <% user=User.find(received.sender_id)%>
+        <%= user.name%>
+    <% end %>
+<% end %>

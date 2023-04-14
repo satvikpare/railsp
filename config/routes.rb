@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
   # Defines the root path route ("/")
+  resources :users
+  resources :friendships
    root "posts#index"
 end

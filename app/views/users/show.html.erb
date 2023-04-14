@@ -1,0 +1,13 @@
+<br>
+<% @posts.each do |p|%>
+    <%= link_to p.name, p%>
+    <br>
+<% end %>
+
+<br>
+<%if current_user.id == @posts.first.user_id%>
+     <p><%= link_to "Friends", friendship_path(current_user) %></p>
+     <p><%= link_to "Friends Status", friendship_path(current_user) %></p>
+<% end %>
+
+<%= render "friendships/myfriends"%>
