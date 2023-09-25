@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :users
   resources :friendships
    root "posts#index"
+
+  mount ActionCable.server => '/cable'
 end
