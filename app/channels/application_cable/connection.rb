@@ -3,7 +3,7 @@ module ApplicationCable
     identified_by :current_user
 
     def connect 
-      senf.current_user = find_verified_user
+      senf.current_user = find_verified_user 
   end
 
   private
