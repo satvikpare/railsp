@@ -1,17 +1,18 @@
 
 <br>
 <h2>Friends</h2>
-<%if @sent_friends.exists? %>
-    <% @sent_friends.each do |sent|%>  
-    <% user=User.find(sent.receiver_id)%>
-        <%= user.name%>
-    <% end %>
-    <br>
+<%debugger%>
+
+<%if @friends.present? %>
+    <%= @friends.each do |f| %>
+      <p><%= link_to f.name, friendship_path(f) %></p>
+    <% end %>    
+<% else %> 
+<p>No Friends to show</p>
 <% end %>
 
-<%if @received_friends.exists? %>
-    <% @received_friends.each do |received|%>  
-    <% user=User.find(received.sender_id)%>
-        <%= user.name%>
-    <% end %>
-<% end %>
+
+
+
+
+

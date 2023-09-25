@@ -1,4 +1,9 @@
 class FriendshipsController < ApplicationController
+
+  def index
+    @friends = user.sent_friends + user.received_friends
+  end
+
   def show
         # @post=Post.where(params[:user_id])
         #  @post=Post.where(user_id: params[:id])
@@ -14,6 +19,11 @@ class FriendshipsController < ApplicationController
         @received_friends = @received_requests.is_accepted
 
   end
+
+  def request_status
+    debugger
+  end
+
 
   private
 

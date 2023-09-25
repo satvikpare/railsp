@@ -1,0 +1,6 @@
+<h2>Friends of <%= current_user.name%></h2>
+
+<% @friends.each do |f| %>
+	<%debugger%>
+	<%= link_to f.name, user_path(f) %>
+<% end%>

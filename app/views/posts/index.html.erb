@@ -1,9 +1,11 @@
 <%= render 'show_post'%>
 
-<% if user_signed_in?%>
-  <%= render :partial => 'newp' %>
-<% else %>
+<% unless user_signed_in?%>
   <h1>Please Login To Add Post</h1>
 <% end %>
 
-<%= render 'all_user'%>
+<%= render :partial => 'newp' %>
+
+<%= render 'all_user' %>
+
+<%= render 'friendships/myfriends'%>
