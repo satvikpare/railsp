@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 
 def show
   @comments=Comment.all
+  
 end
 
 def create
