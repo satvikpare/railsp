@@ -21,13 +21,13 @@ class FriendshipsController < ApplicationController
   end
 
   def request_status
-    debugger
   end
 
 
   private
 
   def user
+    debugger
       User.find(params[:id])
   end
 end
